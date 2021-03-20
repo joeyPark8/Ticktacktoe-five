@@ -4,6 +4,8 @@ Board board;
 Detector detector;
 
 ArrayList<Stone> stoneState = new ArrayList<Stone>();
+ArrayList<Stone> whiteState = new ArrayList<Stone>();
+ArrayList<Stone> blackState = new ArrayList<Stone>();
 
 int term = 1;
 
@@ -16,6 +18,7 @@ void setup() {
   board = new Board();
   
   detector = new Detector();
+  
 }
 
 void draw() {
@@ -35,13 +38,15 @@ void draw() {
   if (keyPressed) {
     if (key == 'e') {
       if (term > 0) {
-        stone.lock(stoneState);
+        stone.lock(stoneState, whiteState);
         term = term * -1;
       }
       else {
-        blackStone.lock(stoneState);
+        blackStone.lock(stoneState, blackState);
         term = term * -1;
       }
+      
+      detector.detect(stoneState);
     }
     delay(50);
   }
@@ -53,6 +58,4 @@ void draw() {
   }
   
   stone.showDebug(false);
-  
-  detector.detect(stoneState);
 }

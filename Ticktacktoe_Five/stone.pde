@@ -105,11 +105,12 @@ class Stone {
     return false;
   }
   
-  void lock(ArrayList<Stone> list) {
+  void lock(ArrayList<Stone> list, ArrayList<Stone> list2) {
     Stone clonedStone = new Stone(type);
     clonedStone.x = x;
     clonedStone.y = y;
     list.add(clonedStone);
+    list2.add(clonedStone);
     
     x = 0;
     y = 0;
